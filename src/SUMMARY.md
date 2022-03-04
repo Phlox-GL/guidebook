@@ -12,6 +12,7 @@
   - [Circle](./shapes/circle.md)
   - [Text](./shapes/text.md)
   - [Graphics](./shapes/graphics.md)
+  - [List](./shapes/create-list.md)
 - [Components](./components.md)
   - [Arrow](./components/arrow.md)
   - [Button](./components/button.md)

@@ -22,3 +22,4 @@
   - [Slider](./components/slider.md)
   - [Spin Slider](./components/spin-slider.md)
   - [Switch](./components/switch.md)
+- [Filters](./filters.md)

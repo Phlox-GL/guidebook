@@ -7,8 +7,8 @@ comp-button $ {}
   :text "|DEMO BUTTON"
   :position $ [] 100 0
   :align-right? false
-  :on $
-    :pointertap (fn (e d!) (js/console.log "|pointertap event" e d!))
+  :on $ {}
+    :pointertap $ fn (e d!) (js/console.log "|pointertap event" e d!)
 
 comp-button $ {}
   :text "|Blue"

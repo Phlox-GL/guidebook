@@ -3,7 +3,7 @@
 Add a container:
 
 ```
-{}
+container $ {}
   :position $ [] 1 1
   :pivot $ [] 0 0
   :rotation 0
@@ -12,4 +12,11 @@ Add a container:
     :pointertap (fn ())
   :on-keyboard $ {}
     :down (fn ())
+```
+
+simple version:
+
+```
+container $ {}
+  :position $ [] 1 1
 ```

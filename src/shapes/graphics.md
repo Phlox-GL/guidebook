@@ -3,7 +3,7 @@
 Draw graphics(use `phlox.core/g` for validations):
 
 ```
-{}
+graphics $ {}
   :ops $ []
     g :move-to $ [] 1 1
     g :line-to $ [] 2 2
@@ -23,4 +23,18 @@ Draw graphics(use `phlox.core/g` for validations):
     :pointertap (fn ())
   :on-keyboard $ {}
     :down (fn ())
+```
+
+simple version:
+
+```
+graphics $ {}
+  :ops $ []
+    g :move-to $ [] 1 1
+    g :line-to $ [] 2 2
+    g :line-style $ {}
+    g :begin-fill $ {} (:color "red")
+    g :end-fill nil
+    g :close-path nil
+  :position $ [] 1 1
 ```

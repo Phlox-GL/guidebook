@@ -14,6 +14,7 @@
   - [Graphics](./shapes/graphics.md)
   - [List](./shapes/create-list.md)
   - [Polyline](./shapes/polyline.md)
+  - [Line Segments](./shapes/line-segments.md)
 - [Components](./components.md)
   - [Arrow](./components/arrow.md)
   - [Button](./components/button.md)

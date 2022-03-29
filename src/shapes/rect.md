@@ -3,7 +3,7 @@
 Draw a rectangle:
 
 ```
-{}
+rect $ {}
   :position $ [] 1 2
   :size $ [] 1 1
   :line-style $ {}
@@ -19,4 +19,17 @@ Draw a rectangle:
   :alpha 1
   :on-keyboard $ {}
     :down (fn ())
+```
+
+simple version:
+
+```
+rect $ {}
+  :position $ [] 1 2
+  :size $ [] 1 1
+  :line-style $ {}
+    :width 2
+    :color 0x000001
+    :alpha 1
+  :fill 0x000001
 ```

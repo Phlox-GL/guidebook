@@ -1,7 +1,6 @@
-
 # `polyline`
 
-Draw lines with points:
+Draw a continous line with points:
 
 ```
 polyline $ {}

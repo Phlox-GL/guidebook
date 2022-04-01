@@ -2,7 +2,7 @@
 
 To interact with text input:
 
-```
+```cirru
 phlox.input/request-text! e $ {}
   :placeholder "|text.."
   :initial "|demo"

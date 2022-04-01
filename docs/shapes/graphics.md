@@ -2,7 +2,7 @@
 
 Draw graphics(use `phlox.core/g` for validations):
 
-```
+```cirru
 graphics $ {}
   :ops $ []
     g :move-to $ [] 1 1
@@ -27,7 +27,7 @@ graphics $ {}
 
 simple version:
 
-```
+```cirru
 graphics $ {}
   :ops $ []
     g :move-to $ [] 1 1

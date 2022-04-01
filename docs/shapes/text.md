@@ -2,7 +2,7 @@
 
 Draw text:
 
-```
+```cirru
 text $ {}
   :text "demo"
   :position $ [] 1 1
@@ -21,7 +21,7 @@ text $ {}
 
 simple version:
 
-```
+```cirru
 text $ {}
   :text "demo"
   :position $ [] 1 1

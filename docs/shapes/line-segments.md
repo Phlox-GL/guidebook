@@ -2,7 +2,7 @@
 
 Draw discrete lines with pairs of points:
 
-```
+```cirru
 lien-segments $ {}
   :style $ {} (:width 4)
     :color $ hslx 40 100 60

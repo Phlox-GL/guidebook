@@ -10,7 +10,7 @@ yarn add @pixi/filter-drop-shadow
 
 then add into `:filters` field:
 
-```
+```cirru
 ns demo.demo
   :require
       |@pixi/filter-drop-shadow :refer $ DropShadowFilter
@@ -29,7 +29,7 @@ text $ {} (:text "\"Shadows")
 
 For a filter `ft` internally it's running `new` to create instances of filters:
 
-```
+```cirru
 new (nth ft 0) $ to-js-data (nth ft 1)
 ```
 

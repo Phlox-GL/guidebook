@@ -2,7 +2,7 @@
 
 `comp-spin-slider` support change value via touch and spin:
 
-```
+```cirru
 comp-spin-slider (>> states :c) $ {}
   :value (:c state)
   :unit 10

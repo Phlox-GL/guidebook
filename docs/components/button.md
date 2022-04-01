@@ -2,7 +2,7 @@
 
 `phlox.comp.button/comp-button` provides a clickable button:
 
-```
+```cirru
 comp-button $ {}
   :text "|DEMO BUTTON"
   :position $ [] 100 0

@@ -2,7 +2,7 @@
 
 `phlox.comp.slider/comp-slider` provides a little slider bar of a number, changes on dragging:
 
-```
+```cirru
 comp-slider (>> states :c) $ {}
   :value (:c state)
   :unit 10

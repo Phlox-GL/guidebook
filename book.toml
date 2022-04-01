@@ -1,7 +1,8 @@
 
 [book]
-title = "Calcit Guide"
-authors = [ "Jon" ]
+title = "Calcit Docs"
+authors = [ "tiye" ]
+src = "docs"
 
 [output.html]
 

@@ -2,7 +2,7 @@
 
 `phlox.comp.drag-point/comp-drag-point` provides a point for dragging:
 
-```
+```cirru
 comp-drag-point (>> states :p3) $ {}
   :position (:p3 state)
   :unit 0.4

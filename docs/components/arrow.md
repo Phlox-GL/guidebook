@@ -2,7 +2,7 @@
 
 `phlox.comp.arrwo/comp-arrow` for arrows:
 
-```
+```cirru
 comp-arrow (>> states :demo1)
   {}
     :from $ :from state

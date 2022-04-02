@@ -2,7 +2,7 @@
 
 requires 3 arguments, with last one in a list of pairs:
 
-```
+```cirru
 create-list :container ({})
   -> (range 20)
     map $ fn (idx)

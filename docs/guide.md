@@ -8,7 +8,7 @@ Previews <http://r.tiye.me/Phlox-GL/phlox/> .
 
 `render!` to add canvas to `<body/>`:
 
-```
+```cirru
 ns app.main $
   :require $ [] phlox.core :refer
     [] hslx render! create-list rect circle text container graphics >>
@@ -46,23 +46,24 @@ Notice that Phlox uses `:pointertap` instead of `:click` for touch screen suppor
 
 Phlox supports a naive global event system for listening to keyboard events from elements:
 
-```
-:on-keyboard $ {}
-  :down $ fn (e dispatch!)
-  :press $ fn (e dispatch!)
-  :up $ fn (e dispatch!)
+```crru
+{}
+  :on-keyboard $ {}
+    :down $ fn (e dispatch!)
+    :press $ fn (e dispatch!)
+    :up $ fn (e dispatch!)
 ```
 
 ### Cursor and states
 
 `>>` for branching states:
 
-```
+```cirru
 phlox.core/>> state :a
 ```
 
 `update-states` for handling states change, used in updater:
 
-```
+```cirru
 phlox.cursor/update-states store $ [] cursor op-data
 ```

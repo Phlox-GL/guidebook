@@ -2,7 +2,7 @@
 
 `phlox.comp.messages/comp-messages` for rendering messages:
 
-```
+```cirru
 comp-messages $ {}
   :messages (:messages state)
   :position $ [] 16 (- js/window.innerWidth 16)

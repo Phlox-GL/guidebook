@@ -1,11 +1,11 @@
-# Rectangle
+# Circle
 
-Draw a rectangle:
+Draw a circle:
 
-```
-rect $ {}
-  :position $ [] 1 2
-  :size $ [] 1 1
+```cirru
+circle $ {}
+  :position $ [] 1 1
+  :radius 1
   :line-style $ {}
     :width 2
     :color 0x000001
@@ -13,9 +13,6 @@ rect $ {}
   :fill 0x000001
   :on $ {}
     :pointertap (fn ())
-  :radius 1
-  :rotation 1
-  :pivot $ [] 1 2
   :alpha 1
   :on-keyboard $ {}
     :down (fn ())
@@ -23,10 +20,10 @@ rect $ {}
 
 simple version:
 
-```
-rect $ {}
-  :position $ [] 1 2
-  :size $ [] 1 1
+```cirru
+circle $ {}
+  :position $ [] 1 1
+  :radius 1
   :line-style $ {}
     :width 2
     :color 0x000001

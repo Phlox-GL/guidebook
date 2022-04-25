@@ -3,7 +3,7 @@
 Draw discrete lines with pairs of points:
 
 ```cirru
-lien-segments $ {}
+line-segments $ {}
   :style $ {} (:width 4)
     :color $ hslx 40 100 60
     :alpha 1

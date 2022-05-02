@@ -23,5 +23,6 @@
   - [Slider Point](./components/slider-point.md)
   - [Slider](./components/slider.md)
   - [Spin Slider](./components/spin-slider.md)
+  - [Drag Point](./components/drag-point.md)
   - [Switch](./components/switch.md)
 - [Filters](./filters.md)

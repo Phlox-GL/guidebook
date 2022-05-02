@@ -102,6 +102,12 @@
               |s $ {} (:at 1648960829684) (:by |rJG4IHzWf) (:type :expr)
                 :data $ {}
                   |T $ {} (:at 1648960829684) (:by |rJG4IHzWf) (:text |register-languages!) (:type :leaf)
+              |sT $ {} (:at 1651516456657) (:by |rJG4IHzWf) (:type :expr)
+                :data $ {}
+                  |T $ {} (:at 1651516456657) (:by |rJG4IHzWf) (:text |.!registerLanguage) (:type :leaf)
+                  |b $ {} (:at 1651516456657) (:by |rJG4IHzWf) (:text |hljs) (:type :leaf)
+                  |h $ {} (:at 1651516456657) (:by |rJG4IHzWf) (:text "|\"bash") (:type :leaf)
+                  |l $ {} (:at 1651516458671) (:by |rJG4IHzWf) (:text |glsl-lang) (:type :leaf)
               |t $ {} (:at 1544874433785) (:by |rJG4IHzWf) (:type :expr)
                 :data $ {}
                   |T $ {} (:at 1544874434638) (:by |rJG4IHzWf) (:text |println) (:type :leaf)
@@ -380,6 +386,16 @@
                     |h $ {} (:at 1648960826094) (:by |rJG4IHzWf) (:type :expr)
                       :data $ {}
                         |T $ {} (:at 1648960826094) (:by |rJG4IHzWf) (:text |register-languages!) (:type :leaf)
+                |z $ {} (:at 1651516422040) (:by |rJG4IHzWf) (:type :expr)
+                  :data $ {}
+                    |T $ {} (:at 1651516422040) (:by |rJG4IHzWf) (:text "|\"highlight.js") (:type :leaf)
+                    |b $ {} (:at 1651516422040) (:by |rJG4IHzWf) (:text |:default) (:type :leaf)
+                    |h $ {} (:at 1651516422040) (:by |rJG4IHzWf) (:text |hljs) (:type :leaf)
+                |zD $ {} (:at 1651516440428) (:by |rJG4IHzWf) (:type :expr)
+                  :data $ {}
+                    |T $ {} (:at 1651516444113) (:by |rJG4IHzWf) (:text "|\"highlight.js/lib/languages/glsl") (:type :leaf)
+                    |b $ {} (:at 1651516440428) (:by |rJG4IHzWf) (:text |:default) (:type :leaf)
+                    |h $ {} (:at 1651516447805) (:by |rJG4IHzWf) (:text |glsl-lang) (:type :leaf)
         :proc $ {} (:at 1499755354983) (:type :expr)
           :data $ {}
       |app.schema $ {}
@@ -781,6 +797,24 @@
                                         :data $ {}
                                           |T $ {} (:at 1648813764898) (:by |rJG4IHzWf) (:text |load-doc) (:type :leaf)
                                           |b $ {} (:at 1648813835676) (:by |rJG4IHzWf) (:text "|\"components/spin-slider.md") (:type :leaf)
+                              |sT $ {} (:at 1648813764898) (:by |rJG4IHzWf) (:type :expr)
+                                :data $ {}
+                                  |T $ {} (:at 1648813764898) (:by |rJG4IHzWf) (:text |{}) (:type :leaf)
+                                  |b $ {} (:at 1648813764898) (:by |rJG4IHzWf) (:type :expr)
+                                    :data $ {}
+                                      |T $ {} (:at 1648813764898) (:by |rJG4IHzWf) (:text |:title) (:type :leaf)
+                                      |b $ {} (:at 1651516128581) (:by |rJG4IHzWf) (:text "|\"Drag Point") (:type :leaf)
+                                  |h $ {} (:at 1648813764898) (:by |rJG4IHzWf) (:type :expr)
+                                    :data $ {}
+                                      |T $ {} (:at 1648813764898) (:by |rJG4IHzWf) (:text |:key) (:type :leaf)
+                                      |b $ {} (:at 1651516209148) (:by |rJG4IHzWf) (:text |:drag-point) (:type :leaf)
+                                  |l $ {} (:at 1648813764898) (:by |rJG4IHzWf) (:type :expr)
+                                    :data $ {}
+                                      |T $ {} (:at 1648813764898) (:by |rJG4IHzWf) (:text |:content) (:type :leaf)
+                                      |b $ {} (:at 1648813764898) (:by |rJG4IHzWf) (:type :expr)
+                                        :data $ {}
+                                          |T $ {} (:at 1648813764898) (:by |rJG4IHzWf) (:text |load-doc) (:type :leaf)
+                                          |b $ {} (:at 1651516146486) (:by |rJG4IHzWf) (:text "|\"components/drag-point.md") (:type :leaf)
                               |t $ {} (:at 1648813764898) (:by |rJG4IHzWf) (:type :expr)
                                 :data $ {}
                                   |T $ {} (:at 1648813764898) (:by |rJG4IHzWf) (:text |{}) (:type :leaf)

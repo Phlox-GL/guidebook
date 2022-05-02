@@ -22,7 +22,7 @@
               println "\"Dispatch:" op
             reset! *reel $ reel-updater updater @*reel op op-data
         |main! $ quote
-          defn main! () (register-languages!)
+          defn main! () (register-languages!) (.!registerLanguage hljs "\"bash" glsl-lang)
             println "\"Running mode:" $ if config/dev? "\"dev" "\"release"
             if config/dev? $ load-console-formatter!
             render-app!
@@ -63,6 +63,8 @@
           "\"./calcit.build-errors" :default build-errors
           "\"bottom-tip" :default hud!
           docs-workflow.config :refer $ register-languages!
+          "\"highlight.js" :default hljs
+          "\"highlight.js/lib/languages/glsl" :default glsl-lang
     |app.schema $ {}
       :defs $ {}
         |docs $ quote
@@ -111,6 +113,8 @@
                   :content $ load-doc "\"components/slider.md"
                 {} (:title "\"Spin Slider") (:key :spin-slider)
                   :content $ load-doc "\"components/spin-slider.md"
+                {} (:title "\"Drag Point") (:key :drag-point)
+                  :content $ load-doc "\"components/drag-point.md"
                 {} (:title "\"Switch") (:key :switch)
                   :content $ load-doc "\"components/switch.md"
             {} (:title "\"Filters") (:key :filters)

@@ -82,6 +82,8 @@
               :children $ []
                 {} (:title "\"Container") (:key :container)
                   :content $ load-doc "\"shapes/container.md"
+                {} (:title "\"Group") (:key :group)
+                  :content $ load-doc "\"shapes/group.md"
                 {} (:title "\"Rectangle") (:key :rect)
                   :content $ load-doc "\"shapes/rect.md"
                 {} (:title "\"Circle") (:key :circle)
@@ -117,6 +119,8 @@
                   :content $ load-doc "\"components/drag-point.md"
                 {} (:title "\"Switch") (:key :switch)
                   :content $ load-doc "\"components/switch.md"
+                {} (:title "\"Tabs") (:key :tabs)
+                  :content $ load-doc "\"components/tabs.md"
             {} (:title "\"Filters") (:key :filters)
               :content $ load-doc "\"filters.md"
         |load-doc $ quote

@@ -8,6 +8,7 @@
 - [Math](./math.md)
 - [Shapes](./shapes.md)
   - [Container](./shapes/container.md)
+  - [Group](./shapes/group.md)
   - [Rectangle](./shapes/rect.md)
   - [Circle](./shapes/circle.md)
   - [Text](./shapes/text.md)
@@ -25,4 +26,5 @@
   - [Spin Slider](./components/spin-slider.md)
   - [Drag Point](./components/drag-point.md)
   - [Switch](./components/switch.md)
+  - [Tabs](./components/tabs.md)
 - [Filters](./filters.md)

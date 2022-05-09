@@ -17,6 +17,7 @@
   - [Polyline](./shapes/polyline.md)
   - [Line Segments](./shapes/line-segments.md)
   - [Mesh](./shapes/mesh.md)
+  - [Image](./shapes/image.md)
 - [Components](./components.md)
   - [Arrow](./components/arrow.md)
   - [Button](./components/button.md)

@@ -100,6 +100,8 @@
                   :content $ load-doc "\"shapes/line-segments.md"
                 {} (:title "\"Mesh") (:key :mesh)
                   :content $ load-doc "\"shapes/mesh.md"
+                {} (:title "\"Image") (:key :image)
+                  :content $ load-doc "\"shapes/image.md"
             {} (:title "\"Components") (:key :components)
               :content $ load-doc "\"components.md"
               :children $ []

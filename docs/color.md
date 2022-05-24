@@ -12,6 +12,12 @@ For HSL:
 phlox.core/hslx 200 80 80
 ```
 
+For HSLuv, based on [hsluv](https://www.npmjs.com/package/hsluv):
+
+```cirru
+phlox.core/hsluvx 200 80 80
+```
+
 For HCL:
 
 ```cirru

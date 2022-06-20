@@ -38,3 +38,12 @@ graphics $ {}
     g :close-path nil
   :position $ [] 1 1
 ```
+
+- `arc`
+
+you may also use `:radian` instead of `:rotation` to declare angles:
+
+```cirru
+g :arc $ {} (:center $ [] 260 120) (:radius 40) (:anticlockwise? false)
+  :radian $ [] 0.1 0.2
+```

@@ -31,7 +31,8 @@ its previous content is recoverable from Git history. Generated output is not
 tracked. Actions now installs the formal toolchain and builds both frontends;
 COS verification uses only the upload action's built-in public URL check.
 PR uploads have isolated number/run/attempt prefixes and never run rsync.
-Remote CI, public uploads and main deployment remain to be accepted.
+PR CI and public uploads passed, including built-in verification of 3 frontend
+assets and 69 mdBook files. Main deployment remains to be accepted.
 
 The existing server directory and separate mdbook deployment (`mdbook.html`)
 must be preserved; COS migration applies only to frontend resources.

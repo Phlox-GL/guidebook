@@ -28,8 +28,10 @@ Local unresolved type slots and deprecated source calls are zero. This does
 not assert type closure in dependencies or migration of historical code blocks
 inside documentation. `compact.cirru` is retired after this local acceptance;
 its previous content is recoverable from Git history. Generated output is not
-tracked. The old Actions workflow still needs replacement before remote
-acceptance and publication; no completed deployment is claimed.
+tracked. Actions now installs the formal toolchain and builds both frontends;
+COS verification uses only the upload action's built-in public URL check.
+PR uploads have isolated number/run/attempt prefixes and never run rsync.
+Remote CI, public uploads and main deployment remain to be accepted.
 
 The existing server directory and separate mdbook deployment (`mdbook.html`)
 must be preserved; COS migration applies only to frontend resources.

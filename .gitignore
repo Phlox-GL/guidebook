@@ -7,3 +7,9 @@ node_modules/
 dist/
 
 book/
+
+.calcit/
+.yarn/
+.pnp.cjs
+.pnp.loader.mjs
+.DS_Store

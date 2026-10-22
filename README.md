@@ -40,6 +40,7 @@ value behavior. `hud!` error/success display, document hierarchy, 60-second Map
 archive write and disabled restoration remain unchanged. The introduction now
 links the real 0.30.1 workflow and documents single-Enum application dispatch
 separately from widget dispatch; broken legacy initialization code is retired.
+The GLSL highlighter is registered as `glsl`, not as a replacement for `bash`.
 
 The existing server directory and separate mdbook deployment (`mdbook.html`)
 must be preserved; COS migration applies only to frontend resources.

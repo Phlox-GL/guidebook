@@ -57,6 +57,7 @@ jobs:
           calcit tree show 'app.config/dev?' --path @2.2
           calcit tree show app.main/mount-target --path @3
           calcit tree show app.main/persist-storage! --path @4.1
+          calcit tree show app.main/main! --path @4
           revision="$(calcit edit transaction --file .github/guidebook-source031.cirru --dry-run --format json | jq -er '.scoped_revision')"
           calcit edit transaction --file .github/guidebook-source031.cirru --expect-revision "$revision" --format edn
           calcit query search option: --source project

@@ -48,29 +48,6 @@ jobs:
           yarn install --immutable
           caps verify --toolchain
 
-      - name: Migrate updater through formal CLI (temporary)
-        run: |
-          set -euo pipefail
-          test "$(calcit -v)" = 0.30.1
-          test "$(git hash-object calcit.cirru)" = 2b9d3abf9e15867cd651e8efb64aa1cbf0950105
-          calcit docs agents --contract
-          calcit query ns app.updater
-          calcit tree show app.updater/updater --path @3
-          revision="$(calcit edit transaction --file .github/guidebook-updater031.cirru --dry-run --format json | jq -er '.scoped_revision')"
-          calcit edit transaction --file .github/guidebook-updater031.cirru --expect-revision "$revision" --format edn
-          calcit query ns app.updater
-          calcit tree show app.updater/updater --path @3
-          calcit analyze program-diff HEAD --format edn
-          git hash-object calcit.cirru
-
-      - name: Export checked updater source (temporary)
-        uses: actions/upload-artifact@v7.0.2
-        with:
-          name: phlox-guidebook-updater-source031
-          path: calcit.cirru
-          if-no-files-found: error
-          retention-days: 1
-
       - name: Validate canonical source and types
         run: |
           set -euo pipefail

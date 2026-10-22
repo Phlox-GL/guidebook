@@ -11,11 +11,11 @@ mdbook serve
 
 The candidate targets precisely paired formal Calcit/procs 0.30.1. The Snapshot package is `app`,
 so its local `app.*` definitions no longer collide with the `docs-workflow`
-dependency. The guarded official configuration edit preserved all 13 original
-definition payloads. Dependency installation is strict, not a mixed-version
+dependency. The earlier package/configuration edit preserved the original
+definitions; current source changes are described below. Dependency installation is strict, not a mixed-version
 fallback.
 
-The candidate consumes published Docs Workflow 0.0.37. All 13 local definitions
+The candidate consumes published Docs Workflow 0.0.37. All 13 public local definitions
 use current typed DocNode/Store/Op/Reel contracts; the 27 document nodes retain
 their titles, keys, content references and hierarchy. The original 60-second
 timer and Map archive format remain, and storage restoration stays disabled.

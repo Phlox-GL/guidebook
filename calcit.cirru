@@ -186,14 +186,10 @@
     'app.updater $ %{} 'FileEntry
       :defs $ {} $ 'updater
         %{} 'CodeEntry (:doc |)
-          :code $ quote $ defn updater (store op op-id op-time)
-            match op
-              (:states cursor data) (update-states store cursor data)
-              (:hydrate-storage data) data
-              _ $ do (println "|unknown op:" op) store
+          :code $ quote $ defn updater (store op op-id op-time) (docs-updater/updater store op op-id op-time)
           :examples $ []
           :schema $ :: 'Fn $ {} (:return 'docs-workflow.schema/Store)
             :args $ [] 'docs-workflow.schema/Store 'docs-workflow.schema/Op 'String 'Number
       :ns $ %{} 'NsEntry (:doc |)
         :code $ quote $ ns app.updater
-          :require $ respo.cursor :refer $ update-states
+          :require $ docs-workflow.updater :as docs-updater

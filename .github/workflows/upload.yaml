@@ -48,6 +48,24 @@ jobs:
           yarn install --immutable
           caps verify --toolchain
 
+      - name: Normalize callback Unit through formal CLI (temporary)
+        run: |
+          set -euo pipefail
+          test "$(calcit -v)" = 0.30.1
+          test "$(git hash-object calcit.cirru)" = 1f8fc7fdee49bfda0fce4be886eb6d90228ab06e
+          calcit tree show app.main/render-app! --path @3.3.4
+          revision="$(calcit edit transaction --file .github/guidebook-unit031.cirru --dry-run --format json | jq -er '.scoped_revision')"
+          calcit edit transaction --file .github/guidebook-unit031.cirru --expect-revision "$revision" --format edn
+          calcit tree show app.main/render-app! --path @3.3.4
+
+      - name: Export checked Unit source (temporary)
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: phlox-guidebook-unit-source031
+          path: calcit.cirru
+          if-no-files-found: error
+          retention-days: 1
+
       - name: Validate canonical source and types
         run: |
           set -euo pipefail

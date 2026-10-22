@@ -125,7 +125,14 @@
             :features $ #{} :js-ffi
         'render-app! $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn render-app! ()
-            render! (mount-target) (comp-container @*reel schema/docs) dispatch!
+            render! (mount-target) (comp-container @*reel schema/docs)
+              fn (op)
+                hint-fn $ {}
+                  :args $ [] 'Dynamic
+                  :return 'Unit
+                  :features $ #{} :js-ffi
+                if (enum? op) (dispatch! op) (raise "|Expected an Enum render action")
+                &unit
           :examples $ []
           :schema $ :: 'Fn $ {} (:return 'Unit)
             :args $ []

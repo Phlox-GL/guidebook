@@ -43,6 +43,10 @@ archive write and disabled restoration remain unchanged. The introduction now
 links the real 0.30.1 workflow and documents single-Enum application dispatch
 separately from widget dispatch; broken legacy initialization code is retired.
 The GLSL highlighter is registered as `glsl`, not as a replacement for `bash`.
+The local updater keeps its public signature and delegates to the already
+checked Docs Workflow updater rather than claiming an unchecked Dynamic cursor
+result is a Store. Supported operations and stored data remain the same; unknown
+operation logging follows the shared updater's stderr behavior.
 
 The existing server directory and separate mdbook deployment (`mdbook.html`)
 must be preserved; COS migration applies only to frontend resources.

@@ -48,6 +48,27 @@ jobs:
           yarn install --immutable
           caps verify --toolchain
 
+      - name: Migrate render boundary through formal CLI (temporary)
+        run: |
+          set -euo pipefail
+          test "$(calcit -v)" = 0.30.1
+          test "$(git hash-object calcit.cirru)" = 2ce4d70e756b0c3a95849dd113fe76e8f92e8e63
+          calcit docs agents --contract
+          calcit tree show app.main/render-app! --path @3.3
+          revision="$(calcit edit transaction --file .github/guidebook-render031.cirru --dry-run --format json | jq -er '.scoped_revision')"
+          calcit edit transaction --file .github/guidebook-render031.cirru --expect-revision "$revision" --format edn
+          calcit tree show app.main/render-app! --path @3.3
+          calcit analyze program-diff HEAD --format edn
+          git hash-object calcit.cirru
+
+      - name: Export checked render source (temporary)
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: phlox-guidebook-render-source031
+          path: calcit.cirru
+          if-no-files-found: error
+          retention-days: 1
+
       - name: Validate canonical source and types
         run: |
           set -euo pipefail

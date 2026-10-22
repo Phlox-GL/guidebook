@@ -132,7 +132,7 @@
                   :return 'Unit
                   :features $ #{} :js-ffi
                 if (enum? op) (dispatch! op) (raise "|Expected an Enum render action")
-                &unit
+                , &unit
           :examples $ []
           :schema $ :: 'Fn $ {} (:return 'Unit)
             :args $ []

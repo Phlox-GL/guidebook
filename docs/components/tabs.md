@@ -12,5 +12,5 @@ comp-tabs
     :position $ [] 100 20
   fn (tab d!)
     println |tab tab
-    &unit
+    , &unit
 ```

@@ -10,7 +10,7 @@ comp-button $ {}
   :on $ {}
     :pointertap $ fn (e d!)
       js/console.log "|pointertap event" e
-      &unit
+      , &unit
 
 comp-button $ {}
   :text "|Blue"
@@ -23,5 +23,5 @@ comp-button $ {}
   :position $ [] 100 0
   :on-pointertap $ fn (e d!)
     js/console.log "|pointertap event" e
-    &unit
+    , &unit
 ```

@@ -46,7 +46,7 @@ container ({})
     :on $ {} $ :pointertap
       fn (e d!)
         d! $ :: :demo
-        &unit
+        , &unit
   text $ {}
     :text |Demo
     :position $ [] 108 104

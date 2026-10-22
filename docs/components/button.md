@@ -8,7 +8,9 @@ comp-button $ {}
   :position $ [] 100 0
   :align-right? false
   :on $ {}
-    :pointertap $ fn (e d!) (js/console.log "|pointertap event" e d!)
+    :pointertap $ fn (e d!)
+      js/console.log "|pointertap event" e
+      &unit
 
 comp-button $ {}
   :text "|Blue"
@@ -19,5 +21,7 @@ comp-button $ {}
 comp-button $ {}
   :text "|Quick pointertap"
   :position $ [] 100 0
-  :on-pointertap $ fn (e d!) (js/console.log "|pointertap event" e d!)
+  :on-pointertap $ fn (e d!)
+    js/console.log "|pointertap event" e
+    &unit
 ```

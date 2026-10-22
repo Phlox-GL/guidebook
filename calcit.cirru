@@ -12,7 +12,7 @@
       :defs $ {}
         'dev? $ %{} 'CodeEntry (:doc |)
           :code $ quote $ def dev?
-            = |dev $ option:unwrap-or (get-env |mode) |release
+            = |dev $ .unwrap-or (get-env |mode) |release
           :examples $ []
           :schema $ :: 'Bool
         'site $ %{} 'CodeEntry (:doc |)
@@ -40,7 +40,22 @@
               reset! *reel $ match control
                 (:some action) (typed/apply-control updater @*reel action)
                 (:none)
-                  typed/record-op updater @*reel (assert-type op 'docs-workflow.schema/Op) (generate-id!)
+                  typed/record-op updater @*reel
+                    match op
+                      (:states cursor data)
+                        match
+                          try-decode-map-as cursor $ :: 'List 'Dynamic
+                          (:ok checked-cursor) (docs-workflow.schema/Op :states checked-cursor data)
+                          (:err message) (raise message)
+                      (:hydrate-storage data)
+                        match
+                          try-decode-map-as
+                            if (struct? data) (&struct:to-map data) data
+                            , 'docs-workflow.schema/Store
+                          (:ok checked-store) (docs-workflow.schema/Op :hydrate-storage checked-store)
+                          (:err message) (raise message)
+                      _ $ raise "|Unknown Docs Workflow operation"
+                    generate-id!
                     :timestamp $ shared/date-now-snapshot
             , &unit
           :examples $ []
@@ -49,7 +64,7 @@
             :features $ #{} :js-ffi
         'main! $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn main! () (register-languages!)
-            .register-language (js-cast hljs 'docs-workflow.schema/HighlightJsHost) |bash glsl-lang
+            .register-language (js-cast hljs 'docs-workflow.schema/HighlightJsHost) |glsl glsl-lang
             println "|Running mode:" $ if config/dev? |dev |release
             if config/dev? $ load-console-formatter!
             render-app!
@@ -76,7 +91,7 @@
             :features $ #{} :js-ffi
         'mount-target $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn mount-target ()
-            option:unwrap $ respo-browser/query-selector |.app
+            .unwrap $ respo-browser/query-selector |.app
           :examples $ []
           :schema $ :: 'Fn $ {} (:return 'respo.dom/DomElement)
             :args $ []
@@ -84,7 +99,7 @@
         'persist-storage! $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn persist-storage! () (println |persist)
             browser/storage-set!
-              option:unwrap $ get config/site :storage-key
+              .unwrap $ get config/site :storage-key
               format-cirru-edn $ &struct:to-map $ :store @*reel
             , &unit
           :examples $ []
@@ -110,7 +125,14 @@
             :features $ #{} :js-ffi
         'render-app! $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn render-app! ()
-            render! (mount-target) (comp-container @*reel schema/docs) dispatch!
+            render! (mount-target) (comp-container @*reel schema/docs)
+              fn (op)
+                hint-fn $ {}
+                  :args $ [] 'Dynamic
+                  :return 'Unit
+                  :features $ #{} :js-ffi
+                if (enum? op) (dispatch! op) (raise "|Expected an Enum render action")
+                , &unit
           :examples $ []
           :schema $ :: 'Fn $ {} (:return 'Unit)
             :args $ []
@@ -186,14 +208,10 @@
     'app.updater $ %{} 'FileEntry
       :defs $ {} $ 'updater
         %{} 'CodeEntry (:doc |)
-          :code $ quote $ defn updater (store op op-id op-time)
-            match op
-              (:states cursor data) (update-states store cursor data)
-              (:hydrate-storage data) data
-              _ $ do (println "|unknown op:" op) store
+          :code $ quote $ defn updater (store op op-id op-time) (docs-updater/updater store op op-id op-time)
           :examples $ []
           :schema $ :: 'Fn $ {} (:return 'docs-workflow.schema/Store)
             :args $ [] 'docs-workflow.schema/Store 'docs-workflow.schema/Op 'String 'Number
       :ns $ %{} 'NsEntry (:doc |)
         :code $ quote $ ns app.updater
-          :require $ respo.cursor :refer $ update-states
+          :require $ docs-workflow.updater :as docs-updater

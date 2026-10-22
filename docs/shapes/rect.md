@@ -12,13 +12,13 @@ rect $ {}
     :alpha 1
   :fill 0x000001
   :on $ {}
-    :pointertap (fn ())
+    :pointertap $ fn (e d!) &unit
   :radius 1
   :rotation 1
   :pivot $ [] 1 2
   :alpha 1
   :on-keyboard $ {}
-    :down (fn ())
+    :down $ fn (e d!) &unit
 ```
 
 simple version:

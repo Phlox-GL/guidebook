@@ -37,6 +37,7 @@ jobs:
         with:
           tools: calcit,caps
           caps-version: "0.1.1"
+          deps-file: deps.cirru
 
       - name: Check canonical source and formal toolchain
         run: |
@@ -46,9 +47,15 @@ jobs:
           caps --strict --ci
           yarn install --immutable
           caps verify --toolchain
+
+      - name: Validate canonical source and types
+        run: |
+          set -euo pipefail
           calcit edit format
           git diff --exit-code -- calcit.cirru
           calcit --check-only --all-defs --format json
+          calcit --check-only --ns app.config --ns app.main --ns app.schema --ns app.updater --summary-only --format json
+          calcit fix --workflow strict --verify --format json | jq -e '{workflow:.data.workflow,diagnostics:.diagnostics} | ., (.workflow.status == "passed" and .diagnostics == [])'
 
       - name: Select frontend CDN path
         id: assets
@@ -91,6 +98,17 @@ jobs:
         run: |
           mdbook build
           mv book/html/index.html book/html/mdbook.html
+
+      - name: Save PR frontend preview
+        if: github.event_name == 'pull_request'
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: phlox-guidebook-preview
+          path: |
+            dist
+            book/html
+          if-no-files-found: error
+          retention-days: 7
 
       - name: Check current production revision
         id: production

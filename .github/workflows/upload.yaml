@@ -48,30 +48,6 @@ jobs:
           yarn install --immutable
           caps verify --toolchain
 
-      - name: Apply guarded migration with formal CLI (temporary)
-        run: |
-          set -euo pipefail
-          test "$(calcit -v)" = 0.30.1
-          test "$(git hash-object calcit.cirru)" = 14d5152c4ac9c09e7d742a646568a9f219342f9b
-          calcit docs agents --contract
-          calcit tree show 'app.config/dev?' --path @2.2
-          calcit tree show app.main/mount-target --path @3
-          calcit tree show app.main/persist-storage! --path @4.1
-          calcit tree show app.main/main! --path @4
-          revision="$(calcit edit transaction --file .github/guidebook-source031.cirru --dry-run --format json | jq -er '.scoped_revision')"
-          calcit edit transaction --file .github/guidebook-source031.cirru --expect-revision "$revision" --format edn
-          calcit query search option: --source project
-          calcit analyze program-diff HEAD --format edn
-          git hash-object calcit.cirru
-
-      - name: Export formal-CLI source (temporary)
-        uses: actions/upload-artifact@v7.0.2
-        with:
-          name: phlox-guidebook-source031
-          path: calcit.cirru
-          if-no-files-found: error
-          retention-days: 1
-
       - name: Validate canonical source and types
         run: |
           set -euo pipefail

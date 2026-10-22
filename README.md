@@ -34,6 +34,8 @@ PR uploads have isolated number/run/attempt prefixes and never run rsync.
 The earlier PR upload verified 3 frontend assets and 69 mdBook files; current
 candidate uploads and runtime must be accepted separately. Main deployment is
 not triggered as part of the migration review.
+PRs save both original frontend outputs as a short-lived artifact so the SPA
+HTML and separate mdBook can be accepted without changing their deployment paths.
 
 Three internal Option helpers use public methods, preserving original missing
 value behavior. `hud!` error/success display, document hierarchy, 60-second Map

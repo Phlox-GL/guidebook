@@ -99,6 +99,17 @@ jobs:
           mdbook build
           mv book/html/index.html book/html/mdbook.html
 
+      - name: Save PR frontend preview
+        if: github.event_name == 'pull_request'
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: phlox-guidebook-preview
+          path: |
+            dist
+            book/html
+          if-no-files-found: error
+          retention-days: 7
+
       - name: Check current production revision
         id: production
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'

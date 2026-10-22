@@ -47,6 +47,9 @@ The local updater keeps its public signature and delegates to the already
 checked Docs Workflow updater rather than claiming an unchecked Dynamic cursor
 result is a Store. Supported operations and stored data remain the same; unknown
 operation logging follows the shared updater's stderr behavior.
+Application dispatch now checks states cursors and hydrated Store values before
+constructing a nominal operation, instead of asserting an arbitrary Enum is Op.
+Valid operations keep their data format; invalid operations fail at the boundary.
 
 The existing server directory and separate mdbook deployment (`mdbook.html`)
 must be preserved; COS migration applies only to frontend resources.

@@ -1,58 +1,50 @@
 ## Phlox Calcit Guide Book
 
-```bash
-cargo install mdbook
-cargo install mdbook-linkcheck
+站点配对正式 Calcit CLI / `@calcit/procs` 0.31.0 与已发布 Docs Workflow 0.0.38。
+升级后重装完整依赖图并刷新页面。Docs Workflow 的 Respo/Reel/UI 依赖仍含 alpha，
+正式工具链不代表模块图全部稳定；UI 升级可能影响外观。站点使用 `calcit.cirru` /
+`deps.cirru`，不恢复 compact/package.cirru，也不提交生成的 js-out。
 
-mdbook serve
+这是文档站的升级，不代表 Phlox 工作流或所有文档片段均已通过 0.31 验收。
+新应用请从维护中的 [Phlox workflow](https://github.com/Phlox-GL/phlox-workflow)
+开始，核对它自己的版本合同。Guide 区分单 Enum 应用 dispatch 与 widget dispatch，
+保留 Ref、宿主边界和 `hud!` 页面报错说明。历史章节需逐段核对，构建通过不能代替
+所有示例的运行验证。
+
+### 开发与门禁
+
+Node 24、Yarn 4.18.0 和正式 Calcit 0.31.0：
+
+```sh
+caps --strict --ci
+corepack yarn install --immutable
+caps verify --toolchain
+calcit --check-only --all-defs
+calcit fix --workflow strict --verify
+calcit calcit.cirru js
+corepack yarn vite
 ```
 
-### Migration candidate
+应用默认 entry 的 dispatch-op 对应原有 `Fn<Dynamic,Unit>` renderer 宿主入口。
+非 Enum 拒绝、业务 cursor/Store 解码以及具名 Op 构造保留；全部 15 个定义、schema、
+imports 和文档节点层级未改。仍使用 Docs Workflow 的名义 DocNode/Store/Op/Reel
+合同，保留 60 秒 Map 存档写入与禁用的恢复行为。`hud!` 和 GLSL 注册行为保持。
+没有附带测试，不把零测试当作业务覆盖；浏览器导航、Quick Jump 和刷新需实际验收。
 
-The candidate targets precisely paired formal Calcit/procs 0.30.1. The Snapshot package is `app`,
-so its local `app.*` definitions no longer collide with the `docs-workflow`
-dependency. The earlier package/configuration edit preserved the original
-definitions; current source changes are described below. Dependency installation is strict, not a mixed-version
-fallback.
+原 CI 的 Caps/immutable/toolchain、全定义、公开入口、完整 strict、SPA/mdBook 构建
+保持，不关闭证明审计或放宽类型预算。Yarn 按维护者确认使用一小时依赖等待期。
 
-The candidate consumes published Docs Workflow 0.0.37. All 13 public local definitions
-use current typed DocNode/Store/Op/Reel contracts; the 27 document nodes retain
-their titles, keys, content references and hierarchy. The original 60-second
-timer and Map archive format remain, and storage restoration stays disabled.
-Styles come from the same versioned Caps module rather than the old CSS-only
-npm package; Vite preserves that logical module path for dependency resolution.
+### 前端部署
 
-The earlier 0.29.2 candidate passed 239 full definitions, 13 public definitions,
-build and Guide/Shapes/Rectangle navigation; those historical results are not
-acceptance of the new formal graph. Exact 0.30.1 CI and browser evidence belongs
-in the migration PR. This does not assert type closure in dependencies or
-exhaustive compilation of all documentation fragments. `compact.cirru` is retired;
-its previous content is recoverable from Git history. Generated output is not
-tracked. Actions now installs the formal toolchain and builds both frontends;
-COS verification uses only the upload action's built-in public URL check.
-PR uploads have isolated number/run/attempt prefixes and never run rsync.
-The earlier PR upload verified 3 frontend assets and 69 mdBook files; current
-candidate uploads and runtime must be accepted separately. Main deployment is
-not triggered as part of the migration review.
-PRs save both original frontend outputs as a short-lived artifact so the SPA
-HTML and separate mdBook can be accepted without changing their deployment paths.
+原工作流保存 SPA/mdBook 产物，PR COS 使用独立编号/run/attempt 前缀及 action
+内置 verify；不增加重复校验脚本。PR 不运行生产 rsync，不自动合并或发版。
+原服务目录及单独的 `mdbook.html` 路径保持，COS 仅针对前端资源。
 
-Three internal Option helpers use public methods, preserving original missing
-value behavior. `hud!` error/success display, document hierarchy, 60-second Map
-archive write and disabled restoration remain unchanged. The introduction now
-links the real 0.30.1 workflow and documents single-Enum application dispatch
-separately from widget dispatch; broken legacy initialization code is retired.
-The GLSL highlighter is registered as `glsl`, not as a replacement for `bash`.
-The local updater keeps its public signature and delegates to the already
-checked Docs Workflow updater rather than claiming an unchecked Dynamic cursor
-result is a Store. Supported operations and stored data remain the same; unknown
-operation logging follows the shared updater's stderr behavior.
-Application dispatch now checks states cursors and hydrated Store values before
-constructing a nominal operation, instead of asserting an arbitrary Enum is Op.
-Valid operations keep their data format; invalid operations fail at the boundary.
-
-The existing server directory and separate mdbook deployment (`mdbook.html`)
-must be preserved; COS migration applies only to frontend resources.
+```sh
+cargo install mdbook
+cargo install mdbook-linkcheck
+mdbook build
+```
 
 ### License
 

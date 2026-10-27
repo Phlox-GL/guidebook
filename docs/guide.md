@@ -19,7 +19,9 @@ caps verify --toolchain
 corepack yarn dev
 ```
 
-The current workflow uses formal 0.30.1. Edit `calcit.cirru` with the Calcit CLI,
+This documentation site uses formal Calcit/procs 0.31.0 and published Docs
+Workflow 0.0.38. The linked application workflow maintains its own paired
+versions; inspect its manifests before copying. Edit `calcit.cirru` with the Calcit CLI,
 not as raw Snapshot text. Type schemas belong to the maintained project; the
 fragments below explain API usage, not a complete standalone program.
 

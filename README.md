@@ -5,7 +5,7 @@
 验证，尚未证明已发布 tag 的 Caps strict 安装；待上游正式发布后再执行干净安装和 PR CI。
 站点使用 `calcit.cirru` / `deps.cirru`，不恢复 compact/package.cirru，也不提交生成的 js-out。
 
-这是文档站的升级，不代表 Phlox 工作流或所有文档片段均已通过 0.31 验收。
+这是文档站的升级，不代表 Phlox 工作流或所有文档片段均已通过 0.32 验收。
 新应用请从维护中的 [Phlox workflow](https://github.com/Phlox-GL/phlox-workflow)
 开始，核对它自己的版本合同。Guide 区分单 Enum 应用 dispatch 与 widget dispatch，
 保留 Ref、宿主边界和 `hud!` 页面报错说明。历史章节需逐段核对，构建通过不能代替

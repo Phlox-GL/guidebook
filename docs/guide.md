@@ -19,19 +19,12 @@ caps verify --toolchain
 corepack yarn dev
 ```
 
-This documentation site targets formal Calcit/procs 0.32.0 with the Docs
-Workflow 0.0.40 candidate. Local candidate validation does not establish a
-released dependency graph; clean Caps installation and PR CI must follow
-upstream publication. The linked application workflow maintains its own paired
-versions; inspect its manifests before copying. Edit `calcit.cirru` with the Calcit CLI,
-not as raw Snapshot text. Type schemas belong to the maintained project; the
-fragments below explain API usage, not a complete standalone program.
+This documentation site pairs formal Calcit/procs **0.32.1** with released Docs Workflow **0.0.40**. Its transitive UI graph still uses published alpha versions for Reel, Alerts, Markdown and Router; consult `deps.cirru` and Caps for the exact graph. The linked application workflow maintains its own paired versions; upgrading this site does not upgrade that project. Inspect its manifests before copying. Edit `calcit.cirru` with the Calcit CLI, not as raw Snapshot text. Type schemas belong to the maintained project; the fragments below explain API usage, not a complete standalone program.
 
 Current namespace imports do not wrap import rules or referred names in lists:
 
 ```cirru
-ns app.main $ :require
-  phlox.core :refer $ hslx render! rect text container clear-phlox-caches!
+ns app.main $ :require $ phlox.core :refer (hslx render! rect text container clear-phlox-caches!)
 ```
 
 `render!` mounts the canvas on `<body/>`. The application's `dispatch!` receives
@@ -51,8 +44,7 @@ container ({})
       fn (e d!)
         d! $ :: :demo
         , &unit
-  text $ {}
-    :text |Demo
+  text $ {} (:text |Demo)
     :position $ [] 108 104
     :style $ {} (:fill 0xffffff) (:font-size 18)
 ```
@@ -67,11 +59,10 @@ Keep the workflow's `hud!` page error/success display during hot reload.
 Phlox supports a naive global event system for listening to keyboard events from elements:
 
 ```cirru
-{}
-  :on-keyboard $ {}
-    :down $ fn (e d!) &unit
-    :press $ fn (e d!) &unit
-    :up $ fn (e d!) &unit
+{} $ :on-keyboard $ {}
+  :down $ fn (e d!) &unit
+  :press $ fn (e d!) &unit
+  :up $ fn (e d!) &unit
 ```
 
 ### Cursor and states

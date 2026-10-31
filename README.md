@@ -1,9 +1,6 @@
 ## Phlox Calcit Guide Book
 
-本轮候选将站点 CLI / `@calcit/procs` 配对正式 **0.32.0**，依赖 Docs Workflow **0.0.40** 候选。
-升级后重装完整依赖图并刷新页面；UI 升级可能影响外观。当前仅使用本地候选模块
-验证，尚未证明已发布 tag 的 Caps strict 安装；待上游正式发布后再执行干净安装和 PR CI。
-站点使用 `calcit.cirru` / `deps.cirru`，不恢复 compact/package.cirru，也不提交生成的 js-out。
+使用者注意：本轮将站点 Calcit CLI / `@calcit/procs` 从 **0.31.0** 同步到正式 **0.32.1**，使用已发布 Docs Workflow **0.0.40**。升级后重装完整精确依赖图并刷新页面，UI 样式可能变化。传递图中的 Reel **0.7.0-alpha.5**、Alerts **0.11.0-alpha.4**、Markdown **0.5.0-alpha.5**、Router **0.9.0-alpha.4** 仍是已发布 alpha，不声称全图均为正式版。源码使用 `calcit.cirru` / `deps.cirru`，不恢复 compact/package.cirru，也不提交生成的 js-out。
 
 这是文档站的升级，不代表 Phlox 工作流或所有文档片段均已通过 0.32 验收。
 新应用请从维护中的 [Phlox workflow](https://github.com/Phlox-GL/phlox-workflow)
@@ -13,7 +10,7 @@
 
 ### 开发与门禁
 
-Node 24、Yarn 4.18.0 和正式 Calcit 0.32.0：
+Node 24、Yarn 4.18.0 和正式 Calcit 0.32.1：
 
 ```sh
 caps --strict --ci
@@ -32,19 +29,19 @@ corepack yarn vite
 没有附带测试，不把零测试当作业务覆盖；浏览器导航、Quick Jump 和刷新需实际验收。
 
 原 CI 的 Caps/immutable/toolchain、全定义、公开入口、完整 strict、SPA/mdBook 构建
-保持，不关闭证明审计或放宽类型预算。Yarn 按维护者确认使用一小时依赖等待期。
+保持，不关闭证明审计或放宽类型预算。npm 新版本解析按统一一小时包龄门禁执行，无包级豁免；已有 lock 的 immutable 重放不会逐次重查包龄。
 
 ### 前端部署
 
-原工作流保存 SPA/mdBook 产物，PR COS 使用独立编号/run/attempt 前缀及 action
-内置 verify；不增加重复校验脚本。PR 不运行生产 rsync，不自动合并或发版。
+SPA 与 mdBook 先归集到 `dist/`：SPA 保留 `index.html`，书籍首页仍为 `mdbook.html`。COS 仅上传这份前端目录，以一次 action 内置 verify 完成；PR 使用独立编号/run/attempt 前缀。一次原路径 rsync 发布完整前端，替代重复上传/rsync；不增加校验脚本。PR 不运行生产 rsync，不自动合并或发版。
 原服务目录及单独的 `mdbook.html` 路径保持，COS 仅针对前端资源。
 
 ```sh
-cargo install mdbook
-cargo install mdbook-linkcheck
+# 与 CI 对齐 mdbook 0.4.14 / mdbook-linkcheck 0.7.6
 mdbook build
 ```
+
+已知 mdBook Cirru 高亮会回退到纯文本，见 [Docs Workflow #95](https://github.com/calcit-lang/docs-workflow/issues/95)；本次不声称修复。
 
 ### License
 

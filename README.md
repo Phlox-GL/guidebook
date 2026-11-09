@@ -1,8 +1,8 @@
 ## Phlox Calcit Guide Book
 
-使用者注意：本轮将站点 Calcit CLI / `@calcit/procs` 从 **0.31.0** 同步到正式 **0.32.1**，使用已发布 Docs Workflow **0.0.40**。升级后重装完整精确依赖图并刷新页面，UI 样式可能变化。传递图中的 Reel **0.7.0-alpha.5**、Alerts **0.11.0-alpha.4**、Markdown **0.5.0-alpha.5**、Router **0.9.0-alpha.4** 仍是已发布 alpha，不声称全图均为正式版。源码使用 `calcit.cirru` / `deps.cirru`，不恢复 compact/package.cirru，也不提交生成的 js-out。
+使用者注意：本轮将站点 Calcit CLI / `@calcit/procs` 从 **0.32.1** 同步到正式 **0.38.0**，使用已发布 Docs Workflow **0.0.42**，`deps.cirru` 与其依赖对齐（Respo 0.19.5、Respo UI 0.15.2、Reel 0.10.0、Alerts 0.14.2、Markdown 0.8.2、Router 0.12.2、js-ffi 0.2.13），均为正式版。升级后重装完整精确依赖图并刷新页面，UI 样式可能变化。源码使用 `calcit.cirru` / `deps.cirru`，不恢复 compact/package.cirru，也不提交生成的 js-out。
 
-这是文档站的升级，不代表 Phlox 工作流或所有文档片段均已通过 0.32 验收。
+这是文档站的升级，不代表 Phlox 工作流或所有文档片段均已通过 0.38 验收。
 新应用请从维护中的 [Phlox workflow](https://github.com/Phlox-GL/phlox-workflow)
 开始，核对它自己的版本合同。Guide 区分单 Enum 应用 dispatch 与 widget dispatch，
 保留 Ref、宿主边界和 `hud!` 页面报错说明。历史章节需逐段核对，构建通过不能代替
@@ -10,7 +10,7 @@
 
 ### 开发与门禁
 
-Node 24、Yarn 4.18.0 和正式 Calcit 0.32.1：
+Node 24、Yarn 4.18.0 和正式 Calcit 0.38.0：
 
 ```sh
 caps --strict --ci
@@ -22,7 +22,7 @@ calcit calcit.cirru js
 corepack yarn vite
 ```
 
-应用默认 entry 的 dispatch-op 对应原有 `Fn<Dynamic,Unit>` renderer 宿主入口。
+应用默认 entry 的 dispatch-op 类型槽绑定到 `docs-workflow.schema/Op`；`dispatch!` 以 `Fn AnyEnum` 加 `(:open :decode)` 接收宿主传入的 Enum，并在边界解码后再记录。
 非 Enum 拒绝、业务 cursor/Store 解码以及具名 Op 构造保留；13 个定义的 schema、imports 和文档节点层级保持。
 官方 formatter 迁移 main!/reload!/render-app! 中 4 处类型提示，原业务表达式不变。仍使用 Docs Workflow 的名义 DocNode/Store/Op/Reel
 合同，保留 60 秒 Map 存档写入与禁用的恢复行为。`hud!` 和 GLSL 注册行为保持。

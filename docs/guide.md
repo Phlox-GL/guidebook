@@ -19,7 +19,7 @@ caps verify --toolchain
 corepack yarn dev
 ```
 
-This documentation site pairs formal Calcit/procs **0.32.1** with released Docs Workflow **0.0.40**. Its transitive UI graph still uses published alpha versions for Reel, Alerts, Markdown and Router; consult `deps.cirru` and Caps for the exact graph. The linked application workflow maintains its own paired versions; upgrading this site does not upgrade that project. Inspect its manifests before copying. Edit `calcit.cirru` with the Calcit CLI, not as raw Snapshot text. Type schemas belong to the maintained project; the fragments below explain API usage, not a complete standalone program.
+This documentation site pairs formal Calcit/procs **0.38.0** with released Docs Workflow **0.0.42**, and its direct dependencies match that Docs Workflow release; consult `deps.cirru` and Caps for the exact graph. The linked application workflow maintains its own paired versions; upgrading this site does not upgrade that project. Inspect its manifests before copying. Edit `calcit.cirru` with the Calcit CLI, not as raw Snapshot text. Type schemas belong to the maintained project; the fragments below explain API usage, not a complete standalone program.
 
 Current namespace imports do not wrap import rules or referred names in lists:
 

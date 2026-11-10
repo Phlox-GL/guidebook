@@ -33,33 +33,13 @@
             when
               and config/dev? $ match op
                 (:states _ _) false
-                _ true
+                (:hydrate-storage _) true
               println |Dispatch: op
-            let
-                control $ typed/decode-control op
-              reset! *reel $ match control
-                (:some action) (typed/apply-control updater @*reel action)
-                (:none)
-                  typed/record-op updater @*reel
-                    match op
-                      (:states cursor data)
-                        match
-                          try-decode-map-as cursor $ List respo.schema/CoordKey
-                          (:ok checked-cursor) (docs-workflow.schema/Op :states checked-cursor data)
-                          (:err message) (raise message)
-                      (:hydrate-storage data)
-                        match
-                          try-decode-map-as
-                            if (struct? data) (&struct:to-map data) data
-                            , 'docs-workflow.schema/Store
-                          (:ok checked-store) (docs-workflow.schema/Op :hydrate-storage checked-store)
-                          (:err message) (raise message)
-                      _ $ raise "|Unknown Docs Workflow operation"
-                    generate-id!
-                    :timestamp $ shared/date-now-snapshot
+            reset! *reel $ typed/record-op updater @*reel op (generate-id!)
+              :timestamp $ shared/date-now-snapshot
             , &unit
           :examples $ []
-          :schema $ quote $ Fn AnyEnum (-> Unit) (:features :js-ffi) (:open :decode)
+          :schema $ quote $ Fn docs-workflow.schema/Op (-> Unit) (:features :js-ffi)
         'main! $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn main! () (register-languages!)
             .register-language (js-cast hljs 'docs-workflow.schema/HighlightJsHost) |glsl glsl-lang
@@ -69,7 +49,7 @@
             add-watch! *reel :changes $ fn (reel prev)
               hint-fn $ Fn (reel.typed/State docs-workflow.schema/Op docs-workflow.schema/Store) (reel.typed/State docs-workflow.schema/Op docs-workflow.schema/Store) (-> Unit)
               render-app!
-            listen-devtools! |k dispatch!
+            listen-devtools-toggle! |k $ fn () $ on-control! (typed/Control :toggle)
             browser/add-event-listener! |beforeunload $ fn (event)
               hint-fn $ Fn js-ffi.browser/EventHost $ -> Unit
               persist-storage!
@@ -86,6 +66,13 @@
             .unwrap $ respo-browser/query-selector |.app
           :examples $ []
           :schema $ quote $ Fn (-> respo.dom/DomElement) (:features :js-ffi)
+        'on-control! $ %{} 'CodeEntry (:doc |)
+          :code $ quote $ defn on-control! (control)
+            when config/dev? $ println |Dispatch: control
+            reset! *reel $ typed/apply-control updater @*reel control
+            , &unit
+          :examples $ []
+          :schema $ quote $ Fn reel.typed/Control (-> Unit) (:features :js-ffi)
         'persist-storage! $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn persist-storage! () (println |persist)
             browser/storage-set!
@@ -109,21 +96,19 @@
           :schema $ quote $ Fn (-> Unit) (:features :js-ffi)
         'render-app! $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn render-app! ()
-            render! (mount-target) (comp-container @*reel schema/docs)
-              fn (op)
-                hint-fn $ Fn Dynamic (-> Unit) (:features :js-ffi)
-                if (enum? op) (dispatch! op) (raise "|Expected an Enum render action")
-                , &unit
+            render-with! (mount-target)
+              fn () $ comp-container @*reel schema/docs on-control!
+              , dispatch!
           :examples $ []
           :schema $ quote $ Fn (-> Unit) (:features :js-ffi)
       :ns $ %{} 'NsEntry (:doc |)
         :code $ quote $ ns app.main
           :require
-            respo.core :refer $ render! clear-cache!
+            respo.core :refer $ render-with! clear-cache!
             docs-workflow.comp.container :refer $ comp-container
             app.updater :refer $ updater
             app.schema :as schema
-            reel.util :refer $ listen-devtools!
+            reel.util :refer $ listen-devtools-toggle!
             app.config :as config
             |./calcit.build-errors :default build-errors
             |bottom-tip :default hud!

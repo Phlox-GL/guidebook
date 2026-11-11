@@ -27,7 +27,7 @@
         '*reel $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defref *reel (typed/new-reel schema/store)
           :examples $ []
-          :schema $ quote $ Ref (reel.typed/State docs-workflow.schema/Op docs-workflow.schema/Store)
+          :schema $ quote $ Ref (typed/State docs-workflow.schema/Op docs-workflow.schema/Store)
         'dispatch! $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn dispatch! (op)
             when
@@ -72,7 +72,7 @@
             reset! *reel $ typed/apply-control updater @*reel control
             , &unit
           :examples $ []
-          :schema $ quote $ Fn reel.typed/Control (-> Unit) (:features :js-ffi)
+          :schema $ quote $ Fn typed/Control (-> Unit) (:features :js-ffi)
         'persist-storage! $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn persist-storage! () (println |persist)
             browser/storage-set!
@@ -152,7 +152,7 @@
                 docs-schema/DocNode :title |Tabs :key :tabs :content (load-doc |components/tabs.md) :children $ []
               docs-schema/DocNode :title |Filters :key :filters :content (load-doc |filters.md) :children $ []
           :examples $ []
-          :schema $ quote $ List docs-workflow.schema/DocNode
+          :schema $ quote $ List docs-schema/DocNode
         'load-doc $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defmacro load-doc (filename)
             read-file $ str |docs/ filename
@@ -164,7 +164,7 @@
           :code $ quote $ def store
             docs-schema/Store :states $ {} $ :cursor ([])
           :examples $ []
-          :schema $ quote docs-workflow.schema/Store
+          :schema $ quote docs-schema/Store
       :ns $ %{} 'NsEntry (:doc |)
         :code $ quote $ ns app.schema
           :require $ docs-workflow.schema :as docs-schema

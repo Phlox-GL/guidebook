@@ -47,11 +47,11 @@
             if config/dev? $ load-console-formatter!
             render-app!
             add-watch! *reel :changes $ fn (reel prev)
-              hint-fn $ Fn (reel.typed/State docs-workflow.schema/Op docs-workflow.schema/Store) (reel.typed/State docs-workflow.schema/Op docs-workflow.schema/Store) (-> Unit)
+              hint-fn $ Fn (typed/State docs-workflow.schema/Op docs-workflow.schema/Store) (typed/State docs-workflow.schema/Op docs-workflow.schema/Store) (-> Unit)
               render-app!
             listen-devtools-toggle! |k $ fn () $ on-control! (typed/Control :toggle)
             browser/add-event-listener! |beforeunload $ fn (event)
-              hint-fn $ Fn js-ffi.browser/EventHost $ -> Unit
+              hint-fn $ Fn browser/EventHost $ -> Unit
               persist-storage!
             browser/set-interval! persist-storage! 60000
             ; let
@@ -86,7 +86,7 @@
             if (nil? build-errors)
               do (remove-watch! *reel :changes) (clear-cache!)
                 add-watch! *reel :changes $ fn (reel prev)
-                  hint-fn $ Fn (reel.typed/State docs-workflow.schema/Op docs-workflow.schema/Store) (reel.typed/State docs-workflow.schema/Op docs-workflow.schema/Store) (-> Unit)
+                  hint-fn $ Fn (typed/State docs-workflow.schema/Op docs-workflow.schema/Store) (typed/State docs-workflow.schema/Op docs-workflow.schema/Store) (-> Unit)
                   render-app!
                 reset! *reel $ typed/refresh updater @*reel schema/store
                 hud! |ok~ |Ok

@@ -33,6 +33,7 @@
             when
               and config/dev? $ match op
                 (:states _ _) false
+                (:navigate _ _) false
                 (:hydrate-storage _) true
               println |Dispatch: op
             reset! *reel $ typed/record-op updater @*reel op (generate-id!)

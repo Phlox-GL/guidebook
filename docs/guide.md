@@ -19,12 +19,12 @@ caps verify --toolchain
 corepack yarn dev
 ```
 
-This documentation site pairs formal Calcit/procs **0.38.0** with released Docs Workflow **0.0.42**, and its direct dependencies match that Docs Workflow release; consult `deps.cirru` and Caps for the exact graph. The linked application workflow maintains its own paired versions; upgrading this site does not upgrade that project. Inspect its manifests before copying. Edit `calcit.cirru` with the Calcit CLI, not as raw Snapshot text. Type schemas belong to the maintained project; the fragments below explain API usage, not a complete standalone program.
+This documentation site pairs formal Calcit/procs **0.43.0** with released Docs Workflow **0.1.1**, and its direct dependencies match that Docs Workflow release; consult `deps.cirru` and Caps for the exact graph. The linked application workflow maintains its own paired versions; upgrading this site does not upgrade that project. Inspect its manifests before copying. Edit `calcit.cirru` with the Calcit CLI, not as raw Snapshot text. Type schemas belong to the maintained project; the fragments below explain API usage, not a complete standalone program.
 
 Current namespace imports do not wrap import rules or referred names in lists:
 
 ```cirru
-ns app.main $ :require $ phlox.core :refer (hslx render! rect text container clear-phlox-caches!)
+ns app.main $ :require $ phlox.core :refer $ hslx render! rect text container clear-phlox-caches!
 ```
 
 `render!` mounts the canvas on `<body/>`. The application's `dispatch!` receives
@@ -34,7 +34,10 @@ Do not treat these two protocols as the same fixed two-argument function.
 
 For example, a pointer callback can send a single Enum operation:
 
-```cirru
+This browser-only example is checked without native execution because `hslx` requires the JavaScript backend.
+
+```cirru.no-run
+ns app.main $ :require $ phlox.core :refer $ hslx rect text container
 container ({})
   rect $ {}
     :position $ [] 100 100
@@ -70,13 +73,19 @@ Phlox supports a naive global event system for listening to keyboard events from
 `>>` for branching states:
 
 ```cirru
-phlox.core/>> state :a
+let
+    state $ {}
+  phlox.core/>> state :a
 ```
 
 `update-states` for handling states change, used in updater:
 
 ```cirru
-phlox.cursor/update-states store cursor op-data
+let
+    store $ {}
+    cursor $ [] :a
+    op-data $ {}
+  phlox.cursor/update-states store cursor op-data
 ```
 
 This is the three-argument API: `Map<Tag, Dynamic>`, `List<Dynamic>`, and the

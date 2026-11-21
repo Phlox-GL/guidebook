@@ -1,6 +1,6 @@
 ## Phlox Calcit Guide Book
 
-开发使用配对的 Calcit CLI 和 `@calcit/procs` 0.44.0，并从正式标签解析 Docs Workflow 0.1.2 与 Reel 0.11.4。更新依赖后重新生成前端。
+开发使用配对的 Calcit CLI 和 `@calcit/procs` 0.44.0，并从正式标签解析 Docs Workflow 0.1.3 与 Reel 0.11.5。更新依赖后重新生成前端。
 
 这是文档站的升级，不代表 Phlox 工作流或所有文档片段均已通过 0.38 验收。
 新应用请从维护中的 [Phlox workflow](https://github.com/Phlox-GL/phlox-workflow)
